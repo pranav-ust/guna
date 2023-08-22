@@ -6,7 +6,7 @@ from st_files_connection import FilesConnection
 conn = st.experimental_connection('s3', type=FilesConnection)
 
 with conn.open("guna-yaaasss/myfile.csv", "a") as f:
-    f.write("Robert,bird")
+    f.write("\nRobert,bird")
 df = conn.read("guna-yaaasss/myfile.csv", input_format="csv", ttl=600)
 # Print results.
 for row in df.itertuples():
