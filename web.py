@@ -1,7 +1,7 @@
 import streamlit as st
 from st_files_connection import FilesConnection
 import json
-#from streamlit_extras.colored_header import colored_header
+from streamlit_extras.colored_header import colored_header
 import random
 
 # Create connection object and retrieve file contents.
@@ -27,21 +27,24 @@ df = conn.read("guna-yaaasss/csps.json", input_format="jsonl")
 for row in df.itertuples():
     st.write(f"{row.guna}, {row.spanish}:")
 
-# entries = []
-# with open('csps.json', 'r') as file:
-#     for line in file:
-#         entries.append(json.loads(line))
-# dontuse = True
-# while(dontuse):
-#     entry = random.choice(entries)
-#     if len(entry['gun']) >= 1:
-#         continue
-#     else:
-#         dontuse = False
+entries = []
+for row in df.itertuples():
+    entries.append({'gun': row.guna, 'spanish': row.spanish})
+with open('csps.json', 'r') as file:
+    for line in file:
+        entries.append(json.loads(line))
+dontuse = True
+while(dontuse):
+    entry = random.choice(entries)
+    st.write(entry)
+    if len(entry['gun']) >= 1:
+        continue
+    else:
+        dontuse = False
         
-# colored_header(
-#     label="Proyecto de Traducción",
-#     description="Traduce una oración de español a Guna",
-#     color_name='red-70'
-# )
-# st.header("Proyecto de Traducción") 
+colored_header(
+    label="Proyecto de Traducción",
+    description="Traduce una oración de español a Guna",
+    color_name='red-70'
+)
+st.header("Proyecto de Traducción") 
