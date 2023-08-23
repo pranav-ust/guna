@@ -1,7 +1,7 @@
 import streamlit as st
 from st_files_connection import FilesConnection
 import json
-from streamlit_extras.colored_header import colored_header
+#from streamlit_extras.colored_header import colored_header
 import random
 
 # Create connection object and retrieve file contents.
