@@ -12,11 +12,15 @@ conn = st.experimental_connection('s3', type=FilesConnection)
 #     f.write("\nRobert,bird")
 
 
-df = conn.read("guna-yaaasss/myfile.csv", input_format="csv", ttl=600)
-# Print results.
-for row in df.itertuples():
-    st.write(f"{row.Owner} has a :{row.Pet}:")
+# df = conn.read("guna-yaaasss/myfile.csv", input_format="csv", ttl=600)
+# # Print results.
+# for row in df.itertuples():
+#     st.write(f"{row.Owner} has a :{row.Pet}:")
 
+
+with st.echo():
+    # Read back the contents of the file
+    st.write(conn.read("guna-yaaasss/csps.json", input_format='text'))
 
 df = conn.read("guna-yaaasss/csps.json", input_format="jsonl")
 # Print results.
