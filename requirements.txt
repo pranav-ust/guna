@@ -2,3 +2,4 @@
 s3fs
 # Direct pypi install coming soon
 git+https://github.com/streamlit/files-connection
+streamlit-extras
