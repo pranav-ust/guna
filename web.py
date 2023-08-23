@@ -25,7 +25,7 @@ with st.echo():
 df = conn.read("guna-yaaasss/csps.json", input_format="jsonl")
 # Print results.
 for row in df.itertuples():
-    st.write(f"{row.guna} has a :{row.spanish}:")
+    st.write(f"{row.guna}, {row.spanish}:")
 
 # entries = []
 # with open('csps.json', 'r') as file:
