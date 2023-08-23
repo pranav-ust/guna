@@ -30,17 +30,17 @@ for row in df.itertuples():
 entries = []
 for row in df.itertuples():
     entries.append({'gun': row.guna, 'spanish': row.spanish})
-with open('csps.json', 'r') as file:
-    for line in file:
-        entries.append(json.loads(line))
-dontuse = True
-while(dontuse):
-    entry = random.choice(entries)
-    st.write(entry)
-    if len(entry['gun']) >= 1:
-        continue
-    else:
-        dontuse = False
+# with open('csps.json', 'r') as file:
+#     for line in file:
+#         entries.append(json.loads(line))
+# dontuse = True
+# while(dontuse):
+#     entry = random.choice(entries)
+#     st.write(entry)
+#     if len(entry['gun']) >= 1:
+#         continue
+#     else:
+#         dontuse = False
         
 colored_header(
     label="Proyecto de Traducción",
