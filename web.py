@@ -73,7 +73,7 @@ if st.session_state.stage == 0:
 
 if st.session_state.stage == 1:
     st.write("La oración a traducir es: ")
-    st.subheader(f"{entry['spa']}")
+    st.subheader(f"{entry['spanish']}")
     trad = st.text_input('Tu traducción en Guna')
     st.button('Enviar', on_click=set_state2, args=[2, trad])
     st.write("Dale clic al botón para mandar tu traducción")
