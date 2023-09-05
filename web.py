@@ -141,6 +141,25 @@ with st.form('addition'):
     selection = random.choice(entries)
     st.write('Please input the guna translation for the following sentence:')
     st.write(selection['spanish'])
-    st.session_state.spanish = selection['spanish']
-    st.text_input('Your translation', key='guna')
-    st.form_submit_button('Submit', on_click=submit)
+    spanish = selection['spanish']
+    guna = st.text_input('Your translation')
+    submit = st.form_submit_button('submit')
+    #st.form_submit_button('Submit', on_click=submit)
+
+if submit:
+    entries = {}
+    conn = st.experimental_connection('s3', type=FilesConnection)
+    df = conn.read("guna-yaaasss/spanish_words.json", input_format="jsonl")
+    for row in df.itertuples():
+        entries[row.spanish] = row.guna
+
+    # Add the new entry to the dictionary
+    entries[spanish] = guna
+
+    # Write the dictionary back to the JSONL file
+    conn = st.experimental_connection('s3', type=FilesConnection)
+    with conn.open('guna-yaaasss/spanish_words.json', 'w') as f:
+        for key, value in entries.items():
+            f.write(json.dumps({'spanish': key, 'guna': value}) + '\n')
+
+    st.experimental_rerun()
