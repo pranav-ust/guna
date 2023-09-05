@@ -96,7 +96,7 @@ import random
 import json
 
 from st_files_connection import FilesConnection
-conn = st.experimental_connection('s3', type=FilesConnection)
+
 
 if 'submitted' not in st.session_state:
     st.session_state.submitted = ''
@@ -108,6 +108,7 @@ def submit():
 
     # Open the JSONL file csps.json and read it to dictionary
     entries = {}
+    conn = st.experimental_connection('s3', type=FilesConnection)
     df = conn.read("guna-yaaasss/spanish_words.json", input_format="jsonl")
     for row in df.itertuples():
         entries[row.spanish] = row.guna
@@ -116,6 +117,7 @@ def submit():
     entries[st.session_state.spanish] = result
 
     # Write the dictionary back to the JSONL file
+    conn = st.experimental_connection('s3', type=FilesConnection)
     with conn.open('guna-yaaasss/spanish_words.json', 'w') as f:
         for key, value in entries.items():
             f.write(json.dumps({'spanish': key, 'guna': value}) + '\n')
@@ -126,6 +128,7 @@ if isinstance(st.session_state.submitted, float):
     col2.title(f'{st.session_state.submitted}')
 
 with st.form('addition'):
+    conn = st.experimental_connection('s3', type=FilesConnection)
 
     df = conn.read("guna-yaaasss/spanish_words.json", input_format="jsonl")
     entries = []
