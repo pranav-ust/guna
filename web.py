@@ -130,6 +130,7 @@ if isinstance(st.session_state.submitted, float):
     col2.title(f'{st.session_state.submitted}')
 
 with st.form('addition'):
+    st.experimental_rerun()
     conn = st.experimental_connection('s3', type=FilesConnection)
 
     df = conn.read("guna-yaaasss/spanish_words.json", input_format="jsonl")
