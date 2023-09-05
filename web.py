@@ -122,6 +122,8 @@ def submit():
         for key, value in entries.items():
             f.write(json.dumps({'spanish': key, 'guna': value}) + '\n')
 
+    st.experimental_rerun()
+
 col1,col2 = st.columns(2)
 col1.title('Sum:')
 if isinstance(st.session_state.submitted, float):
