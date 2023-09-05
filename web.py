@@ -122,7 +122,7 @@ def submit():
 
 col1,col2 = st.columns(2)
 col1.title('Sum:')
-if isinstance(st.session_state.sum, float):
+if isinstance(st.session_state.submitted, float):
     col2.title(f'{st.session_state.submitted}')
 
 with st.form('addition'):
